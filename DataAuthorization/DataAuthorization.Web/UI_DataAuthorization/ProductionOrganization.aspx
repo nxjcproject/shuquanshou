@@ -64,27 +64,27 @@
 				    <td>
                          <input id="TextBox_LevelCode" class="easyui-validatebox" data-options="required:true"  style="width: 150px;"/>
                     </td>
-                    <th></th>
-				    <td>
-                         
-                    </td>
-			    </tr>	
-                <tr>
                     <th>产线类型</th>
 				    <td>
                          <input id="TextBox_ProductionType"  style="width: 150px;"/>
                     </td>
-                    <th>投产日期</th>
-				    <td>
-                         <input id="TextBox_CommissioningDate" class="easyui-datebox" data-options="validType:'md[\'2014-10-10\']', editable: false, required: true" style="width:150px"/>
-                    </td>
-			    </tr>   
+			    </tr>
                 <tr>
                     <th>机构地址</th>
 				    <td colspan ="3">
                          <input id="TextBox_OrganizaitonAddress" style="width: 430px;"/>
                     </td>
 			    </tr>
+                <tr>
+                    <th>海拔高度</th>
+				    <td>
+                         <input id="TextBox_CoefficientAltitude"  style="width: 150px;"/>
+                    </td>
+                    <th>投产日期</th>
+				    <td>
+                         <input id="TextBox_CommissioningDate" class="easyui-datebox" data-options="validType:'md[\'2014-10-10\']', editable: false, required: true" style="width:150px"/>
+                    </td>
+			    </tr>                
                 <tr>
                     <th>联系人</th>
 				    <td>

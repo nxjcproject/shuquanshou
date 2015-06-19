@@ -60,6 +60,10 @@ function InitializeProdutionOrganizationGrid(myData) {
             field: 'Address'
         }, {
             width: '80',
+            title: '海拔高度',
+            field: 'CoefficientAltitude'
+        },{
+            width: '80',
             title: '联系人',
             field: 'Contacts'
         }, {
@@ -114,7 +118,8 @@ function addProductionOrganizationFun() {
 
     $('#TextBox_OrganizationId').removeAttr('readonly');
 
-    $('#TextBox_OrganizationId').attr('value', '');
+    $('#TextBox_CoefficientAltitude').attr('value', '');
+    $('#TextBox_OrganizationName').attr('value', '');
     $('#TextBox_OrganizationName').attr('value', '');
     $('#TextBox_LevelCode').attr('value', '');
     //$('#TextBox_DataBaseId').attr('value', '');
@@ -197,6 +202,7 @@ function SaveProductionOrganization() {
     var m_Type = $('#TextBox_ProductionType').val();
     var m_CommissioningDate = $('#TextBox_CommissioningDate').datebox('getValue');
     var m_Address = $('#TextBox_OrganizaitonAddress').val();
+    var m_CoefficientAltitude = $('#TextBox_CoefficientAltitude').val();
     var m_Contacts = $('#TextBox_Contacts').val();
     var m_LegalRepresentative = $('#TextBox_LegalRepresentative').val();
     var m_ContactInfo = $('#TextBox_ContactInfo').val();
@@ -228,7 +234,8 @@ function SaveProductionOrganization() {
                 type: "POST",
                 url: 'ProductionOrganization.aspx/AddProductionOrganization',
                 data: "{myOrganizationId:'" + m_OrganizationId + "',myName:'" + m_Name + "',myLevelCode:'" + m_LevelCode + "',myType:'" + m_Type
-                                     + "',myCommissioningDate:'" + m_CommissioningDate + "',myAddress:'" + m_Address + "',myContacts:'" + m_Contacts
+                                     + "',myCommissioningDate:'" + m_CommissioningDate + "',myAddress:'" + m_Address + "',myCoefficientAltitude:'" + m_CoefficientAltitude
+                                     + "',myContacts:'" + m_Contacts
                                      + "',myLegalRepresentative:'" + m_LegalRepresentative + "',myContactInfo:'" + m_ContactInfo
                                      + "',myProducts:'" + m_Products + "',myRemark:'" + m_Remark + "'}",
                 contentType: "application/json; charset=utf-8",
@@ -253,7 +260,8 @@ function SaveProductionOrganization() {
                 type: "POST",
                 url: 'ProductionOrganization.aspx/ModifyProductionOrganization',
                 data: "{myOrganizationId:'" + m_OrganizationId + "',myName:'" + m_Name + "',myLevelCode:'" + m_LevelCode + "',myType:'" + m_Type
-                                     + "',myCommissioningDate:'" + m_CommissioningDate + "',myAddress:'" + m_Address + "',myContacts:'" + m_Contacts
+                                     + "',myCommissioningDate:'" + m_CommissioningDate + "',myAddress:'" + m_Address + "',myCoefficientAltitude:'" + m_CoefficientAltitude
+                                     + "',myContacts:'" + m_Contacts
                                      + "',myLegalRepresentative:'" + m_LegalRepresentative + "',myContactInfo:'" + m_ContactInfo
                                      + "',myProducts:'" + m_Products + "',myRemark:'" + m_Remark + "'}",
                 contentType: "application/json; charset=utf-8",

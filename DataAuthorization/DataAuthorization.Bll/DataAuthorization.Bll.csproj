@@ -32,10 +32,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommonDataFunction">
-      <HintPath>..\..\..\组件\CommonDataFunction\CommonDataFunction\bin\Debug\CommonDataFunction.dll</HintPath>
+      <HintPath>..\..\Lib\CommonDataFunction.dll</HintPath>
     </Reference>
     <Reference Include="EasyUIJsonParser">
-      <HintPath>..\..\..\组件\EasyUIJsonParser\EasyUIJsonParser\bin\Debug\EasyUIJsonParser.dll</HintPath>
+      <HintPath>..\..\Lib\EasyUIJsonParser.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

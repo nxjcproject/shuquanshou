@@ -33,10 +33,10 @@
   <ItemGroup>
     <Reference Include="DataFactory, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\DataFactory\DataFactory\bin\Debug\DataFactory.dll</HintPath>
+      <HintPath>..\..\Lib\DataFactory.dll</HintPath>
     </Reference>
     <Reference Include="Spring.Core">
-      <HintPath>..\..\..\DataFactory\DataFactory\bin\Debug\Spring.Core.dll</HintPath>
+      <HintPath>..\..\Lib\Spring.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

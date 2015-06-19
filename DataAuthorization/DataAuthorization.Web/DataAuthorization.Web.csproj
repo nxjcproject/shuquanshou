@@ -40,7 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="InternalMemeryRestore">
-      <HintPath>..\..\..\WebStyleBaseForEnergy_开发用\WebStyleBaseForEnergy\bin\Debug\InternalMemeryRestore.dll</HintPath>
+      <HintPath>..\..\Lib\InternalMemeryRestore.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -61,7 +61,7 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="WebStyleBaseForEnergy, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\WebStyleBaseForEnergy_开发用\WebStyleBaseForEnergy\bin\Debug\WebStyleBaseForEnergy.dll</HintPath>
+      <HintPath>..\..\Lib\WebStyleBaseForEnergy.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

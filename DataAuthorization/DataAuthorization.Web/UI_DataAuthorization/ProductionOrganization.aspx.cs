@@ -30,8 +30,8 @@ namespace DataAuthorization.Web.UI_DataAuthorization
             return m_ProductionOrganizationInfoJson;
         }
         [WebMethod]
-        public static string AddProductionOrganization(string myOrganizationId, string myName, string myLevelCode, string myType, string myCommissioningDate, 
-                                                       string myAddress, string myContacts, string myLegalRepresentative, string myContactInfo, string myProducts, string myRemark)
+        public static string AddProductionOrganization(string myOrganizationId, string myName, string myLevelCode, string myType, string myCommissioningDate,
+                                                       string myAddress, string myCoefficientAltitude, string myContacts, string myLegalRepresentative, string myContactInfo, string myProducts, string myRemark)
         {
             if (mUserId != "")
             {
@@ -43,6 +43,14 @@ namespace DataAuthorization.Web.UI_DataAuthorization
                 m_ProductionOrganizationInfo.Type = myType;
                 m_ProductionOrganizationInfo.CommissioningDate = myCommissioningDate;
                 m_ProductionOrganizationInfo.Address = myAddress;
+                if (myCoefficientAltitude == "")
+                {
+                    m_ProductionOrganizationInfo.CoefficientAltitude = "0";
+                }
+                else
+                {
+                    m_ProductionOrganizationInfo.CoefficientAltitude = myCoefficientAltitude;
+                }
                 m_ProductionOrganizationInfo.Contacts = myContacts;
                 m_ProductionOrganizationInfo.LegalRepresentative = myLegalRepresentative;
                 m_ProductionOrganizationInfo.ContactInfo = myContactInfo;
@@ -59,7 +67,7 @@ namespace DataAuthorization.Web.UI_DataAuthorization
         }
         [WebMethod]
         public static string ModifyProductionOrganization(string myOrganizationId, string myName, string myLevelCode, string myType, string myCommissioningDate,
-                                                       string myAddress, string myContacts, string myLegalRepresentative, string myContactInfo, string myProducts, string myRemark)
+                                                       string myAddress, string myCoefficientAltitude, string myContacts, string myLegalRepresentative, string myContactInfo, string myProducts, string myRemark)
         {
             if (mUserId != "")
             {
@@ -71,6 +79,14 @@ namespace DataAuthorization.Web.UI_DataAuthorization
                 m_ProductionOrganizationInfo.Type = myType;
                 m_ProductionOrganizationInfo.CommissioningDate = myCommissioningDate;
                 m_ProductionOrganizationInfo.Address = myAddress;
+                if (myCoefficientAltitude == "")
+                {
+                    m_ProductionOrganizationInfo.CoefficientAltitude = "0";
+                }
+                else
+                {
+                    m_ProductionOrganizationInfo.CoefficientAltitude = myCoefficientAltitude;
+                }
                 m_ProductionOrganizationInfo.Contacts = myContacts;
                 m_ProductionOrganizationInfo.LegalRepresentative = myLegalRepresentative;
                 m_ProductionOrganizationInfo.ContactInfo = myContactInfo;
