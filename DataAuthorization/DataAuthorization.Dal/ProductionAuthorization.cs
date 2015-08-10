@@ -62,6 +62,7 @@ namespace DataAuthorization.Dal
                     A.Type as Type, 
                     A.LegalRepresentative as LegalRepresentative, 
                     A.Address as Address, 
+                    A.CoefficientAltitude as CoefficientAltitude,
                     A.Contacts as Contacts, 
                     A.ContactInfo as ContactInfo, 
                     A.CommissioningDate as CommissioningDate, 
@@ -73,7 +74,7 @@ namespace DataAuthorization.Dal
             try
             {
                 m_Sql = string.Format(m_Sql, myOrganizationId);
-
+                
                 DataSet mDataSet_ProductionOrganizationInfo = m_DbDataAdapter.MySqlDbDataAdaper.Fill(null, m_Sql, "ProductionOrganizationTable");
                 return mDataSet_ProductionOrganizationInfo.Tables["ProductionOrganizationTable"];
             }
