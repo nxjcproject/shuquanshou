@@ -15,7 +15,7 @@ namespace DataAuthorization.Bll
         {
             DataTable m_ProductionOrganizationInfo = dal_IProductionAuthorization.GetProductionOrganizationInfo(myRootNode, myEnabled);
             string m_ProductionOrganizationInfoJson = EasyUIJsonParser.TreeJsonParser.DataTableToJsonByLevelCode(m_ProductionOrganizationInfo, "LevelCode", "Name", new string[] { "OrganizationId",
-                "DatabaseId", "Type", "LegalRepresentative", "Address", "CoefficientAltitude", "Contacts", "ContactInfo","CommissioningDate", "Products", "Remarks" });
+                "DatabaseId", "Type", "LegalRepresentative", "Address", "Contacts", "ContactInfo","CommissioningDate", "Products", "Remarks" });
             return m_ProductionOrganizationInfoJson;
         }
         public static string GetProductionOrganizationById(string myOrganizationId)

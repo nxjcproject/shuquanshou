@@ -19,12 +19,11 @@ namespace DataAuthorization.Dal
                              A.USER_NAME as UserName, 
                              B.DEPARTMENT_NAME as DepartmentName,
                              C.ROLE_NAME as RoleName   
-                    from {2}users A 
-                    left join {2}departments B on A.DEPARTMENT_ID = B.DEPARTMENT_ID 
-                    left join {2}roles C on A.ROLE_ID = C.ROLE_ID 
+                    from {1}users A 
+                    left join {1}departments B on A.DEPARTMENT_ID = B.DEPARTMENT_ID 
+                    left join {1}roles C on A.ROLE_ID = C.ROLE_ID 
                     where A.ENABLED = 1 
-                    and A.DEPARTMENT_ID in ({0})
-                    {1}
+                    {0}
                     order by A.DEPARTMENT_ID, A.ROLE_ID";
             try
             {
@@ -43,13 +42,13 @@ namespace DataAuthorization.Dal
                 }
                 if (myDepartmentRangeId != "")
                 {
-                    m_Sql = string.Format(m_Sql, myDepartmentRangeId, m_Condition, WebStyleBaseForEnergy.DbDataAdapter.MainFrameDataBase + ".dbo.");
+                    //m_Condition = m_Condition + string.Format("and A.DEPARTMENT_ID in ({0})", myDepartmentRangeId);
                 }
                 else
                 {
-                    m_Sql = string.Format(m_Sql, "''", m_Condition, WebStyleBaseForEnergy.DbDataAdapter.MainFrameDataBase + ".dbo.");
+                    //m_Condition = m_Condition + string.Format("and A.DEPARTMENT_ID in ({0})", "''");
                 }
-
+                m_Sql = string.Format(m_Sql, m_Condition, WebStyleBaseForEnergy.DbDataAdapter.MainFrameDataBase + ".dbo.");
                 DataSet mDataSet_UserInfo = m_DbDataAdapter.MySqlDbDataAdaper.Fill(null, m_Sql, "UserInfoTable");
                 return mDataSet_UserInfo.Tables["UserInfoTable"];
             }

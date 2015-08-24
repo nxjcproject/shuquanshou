@@ -15,7 +15,6 @@ namespace DataAuthorization.Model
         private string _Type;
         private string _LegalRepresentative;
         private string _Address;
-        private string _CoefficientAltitude;
         private string _Contacts;
         private string _ContactInfo;
         private string _CommissioningDate;
@@ -114,17 +113,6 @@ namespace DataAuthorization.Model
             set
             {
                 _Address = value;
-            }
-        }
-        public string CoefficientAltitude
-        {
-            get
-            {
-                return _CoefficientAltitude;
-            }
-            set
-            {
-                _CoefficientAltitude = value;
             }
         }
         public string Contacts

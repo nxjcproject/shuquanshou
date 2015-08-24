@@ -31,14 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EasyUIJsonParser">
-      <HintPath>..\..\Lib\EasyUIJsonParser.dll</HintPath>
-    </Reference>
     <Reference Include="InternalMemeryRestore">
-      <HintPath>..\..\Lib\InternalMemeryRestore.dll</HintPath>
+      <HintPath>..\..\..\WebStyleBaseForEnergy\WebStyleBaseForEnergy\bin\Debug\InternalMemeryRestore.dll</HintPath>
     </Reference>
     <Reference Include="mDbDataAdaper">
-      <HintPath>..\..\Lib\mDbDataAdaper.dll</HintPath>
+      <HintPath>..\..\..\WebStyleBaseForEnergy\WebStyleBaseForEnergy\bin\Debug\mDbDataAdaper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -48,7 +45,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="WebStyleBaseForEnergy">
-      <HintPath>..\..\Lib\WebStyleBaseForEnergy.dll</HintPath>
+      <HintPath>..\..\..\WebStyleBaseForEnergy\WebStyleBaseForEnergy\bin\Debug\WebStyleBaseForEnergy.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
