@@ -12,11 +12,23 @@ namespace DataAuthorization.Web.UI_DataAuthorization
         protected void Page_Load(object sender, EventArgs e)
         {
             base.InitComponts();
-            if (!IsPostBack)
-            {
-            }
+#if DEBUG
+            ////////////////////调试用,自定义的数据授权
+            List<string> m_DataValidIdItems = new List<string>() { "zc_nxjc_byc_byf" };
+            AddDataValidIdGroup("ProductionOrganization", m_DataValidIdItems);
+            //页面操作权限控制
+            mPageOpPermission = "0100";
+#endif
         }
-
+        /// <summary>
+        /// 增删改查权限控制
+        /// </summary>
+        /// <returns></returns>
+        [WebMethod]
+        public static char[] AuthorityControl()
+        {
+            return mPageOpPermission.ToArray();
+        }
         [WebMethod]
         public static string GetProductionOrganizationInfo()
         {
@@ -33,84 +45,105 @@ namespace DataAuthorization.Web.UI_DataAuthorization
         public static string AddProductionOrganization(string myOrganizationId, string myName, string myLevelCode, string myType, string myCommissioningDate,
                                                        string myAddress, string myCoefficientAltitude, string myContacts, string myLegalRepresentative, string myContactInfo, string myProducts, string myRemark)
         {
-            if (mUserId != "")
+            if (mPageOpPermission.ToArray()[1] == '1')
             {
-                Model.ProductionOrganizationInfo m_ProductionOrganizationInfo = new Model.ProductionOrganizationInfo();
-                m_ProductionOrganizationInfo.OrganizationID = myOrganizationId;
-                m_ProductionOrganizationInfo.Name = myName;
-                m_ProductionOrganizationInfo.LevelCode = myLevelCode;
-                m_ProductionOrganizationInfo.DatabaseID = "";
-                m_ProductionOrganizationInfo.Type = myType;
-                m_ProductionOrganizationInfo.CommissioningDate = myCommissioningDate;
-                m_ProductionOrganizationInfo.Address = myAddress;
-                if (myCoefficientAltitude == "")
+                if (mUserId != "")
                 {
-                    m_ProductionOrganizationInfo.CoefficientAltitude = "0";
+                    Model.ProductionOrganizationInfo m_ProductionOrganizationInfo = new Model.ProductionOrganizationInfo();
+                    m_ProductionOrganizationInfo.OrganizationID = myOrganizationId;
+                    m_ProductionOrganizationInfo.Name = myName;
+                    m_ProductionOrganizationInfo.LevelCode = myLevelCode;
+                    m_ProductionOrganizationInfo.DatabaseID = "";
+                    m_ProductionOrganizationInfo.Type = myType;
+                    m_ProductionOrganizationInfo.CommissioningDate = myCommissioningDate;
+                    m_ProductionOrganizationInfo.Address = myAddress;
+                    if (myCoefficientAltitude == "")
+                    {
+                        m_ProductionOrganizationInfo.CoefficientAltitude = "0";
+                    }
+                    else
+                    {
+                        m_ProductionOrganizationInfo.CoefficientAltitude = myCoefficientAltitude;
+                    }
+                    m_ProductionOrganizationInfo.Contacts = myContacts;
+                    m_ProductionOrganizationInfo.LegalRepresentative = myLegalRepresentative;
+                    m_ProductionOrganizationInfo.ContactInfo = myContactInfo;
+                    m_ProductionOrganizationInfo.Products = myProducts;
+                    m_ProductionOrganizationInfo.Remarks = myRemark;
+
+                    string m_ProductionOrganizationInfoJson = DataAuthorization.Bll.ProductionAuthorization.AddProductionOrganization(m_ProductionOrganizationInfo);
+                    return m_ProductionOrganizationInfoJson;
                 }
                 else
                 {
-                    m_ProductionOrganizationInfo.CoefficientAltitude = myCoefficientAltitude;
+                    return "非法的用户操作!";
                 }
-                m_ProductionOrganizationInfo.Contacts = myContacts;
-                m_ProductionOrganizationInfo.LegalRepresentative = myLegalRepresentative;
-                m_ProductionOrganizationInfo.ContactInfo = myContactInfo;
-                m_ProductionOrganizationInfo.Products = myProducts;
-                m_ProductionOrganizationInfo.Remarks = myRemark;
-
-                string m_ProductionOrganizationInfoJson = DataAuthorization.Bll.ProductionAuthorization.AddProductionOrganization(m_ProductionOrganizationInfo);
-                return m_ProductionOrganizationInfoJson;
             }
             else
             {
-                return "非法的用户操作!";
+                return "该用户没有增加权限！";
             }
         }
         [WebMethod]
         public static string ModifyProductionOrganization(string myOrganizationId, string myName, string myLevelCode, string myType, string myCommissioningDate,
                                                        string myAddress, string myCoefficientAltitude, string myContacts, string myLegalRepresentative, string myContactInfo, string myProducts, string myRemark)
         {
-            if (mUserId != "")
+            if (mPageOpPermission.ToArray()[2] == '1')
             {
-                Model.ProductionOrganizationInfo m_ProductionOrganizationInfo = new Model.ProductionOrganizationInfo();
-                m_ProductionOrganizationInfo.OrganizationID = myOrganizationId;
-                m_ProductionOrganizationInfo.Name = myName;
-                m_ProductionOrganizationInfo.LevelCode = myLevelCode;
-                m_ProductionOrganizationInfo.DatabaseID = "";
-                m_ProductionOrganizationInfo.Type = myType;
-                m_ProductionOrganizationInfo.CommissioningDate = myCommissioningDate;
-                m_ProductionOrganizationInfo.Address = myAddress;
-                if (myCoefficientAltitude == "")
+                if (mUserId != "")
                 {
-                    m_ProductionOrganizationInfo.CoefficientAltitude = "0";
+                    Model.ProductionOrganizationInfo m_ProductionOrganizationInfo = new Model.ProductionOrganizationInfo();
+                    m_ProductionOrganizationInfo.OrganizationID = myOrganizationId;
+                    m_ProductionOrganizationInfo.Name = myName;
+                    m_ProductionOrganizationInfo.LevelCode = myLevelCode;
+                    m_ProductionOrganizationInfo.DatabaseID = "";
+                    m_ProductionOrganizationInfo.Type = myType;
+                    m_ProductionOrganizationInfo.CommissioningDate = myCommissioningDate;
+                    m_ProductionOrganizationInfo.Address = myAddress;
+                    if (myCoefficientAltitude == "")
+                    {
+                        m_ProductionOrganizationInfo.CoefficientAltitude = "0";
+                    }
+                    else
+                    {
+                        m_ProductionOrganizationInfo.CoefficientAltitude = myCoefficientAltitude;
+                    }
+                    m_ProductionOrganizationInfo.Contacts = myContacts;
+                    m_ProductionOrganizationInfo.LegalRepresentative = myLegalRepresentative;
+                    m_ProductionOrganizationInfo.ContactInfo = myContactInfo;
+                    m_ProductionOrganizationInfo.Products = myProducts;
+                    m_ProductionOrganizationInfo.Remarks = myRemark;
+                    string m_ProductionOrganizationInfoJson = DataAuthorization.Bll.ProductionAuthorization.ModifyProductionOrganization(m_ProductionOrganizationInfo);
+                    return m_ProductionOrganizationInfoJson;
                 }
                 else
                 {
-                    m_ProductionOrganizationInfo.CoefficientAltitude = myCoefficientAltitude;
+                    return "非法的用户操作!";
                 }
-                m_ProductionOrganizationInfo.Contacts = myContacts;
-                m_ProductionOrganizationInfo.LegalRepresentative = myLegalRepresentative;
-                m_ProductionOrganizationInfo.ContactInfo = myContactInfo;
-                m_ProductionOrganizationInfo.Products = myProducts;
-                m_ProductionOrganizationInfo.Remarks = myRemark;
-                string m_ProductionOrganizationInfoJson = DataAuthorization.Bll.ProductionAuthorization.ModifyProductionOrganization(m_ProductionOrganizationInfo);
-                return m_ProductionOrganizationInfoJson;
             }
             else
             {
-                return "非法的用户操作!";
+                return "该用户没有修改权限！";
             }
         }
         [WebMethod]
         public static string RemoveProductionOrganization(string myOrganizationId, string myLevelCode)
         {
-            if (mUserId != "")
+            if (mPageOpPermission.ToArray()[3] == '1')
             {
-                string m_ProductionOrganizationInfoJson = DataAuthorization.Bll.ProductionAuthorization.RemoveProductionOrganization(myOrganizationId, myLevelCode);
-                return m_ProductionOrganizationInfoJson;
+                if (mUserId != "")
+                {
+                    string m_ProductionOrganizationInfoJson = DataAuthorization.Bll.ProductionAuthorization.RemoveProductionOrganization(myOrganizationId, myLevelCode);
+                    return m_ProductionOrganizationInfoJson;
+                }
+                else
+                {
+                    return "非法的用户操作!";
+                }
             }
             else
             {
-                return "非法的用户操作!";
+                return "该用户没有删除权限！";
             }
         }
     }

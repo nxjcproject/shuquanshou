@@ -1,7 +1,36 @@
-﻿$(document).ready(function () {
+﻿
+var PageAuthority=[];
+$(document).ready(function () {
     loadProdutionOrganizationData('first');
     InitializeAddUserAuthorizationDialog();
+    initPageAuthority();
 });
+//初始化页面的增删改查权限
+function initPageAuthority() {
+    $.ajax({
+        type: "POST",
+        url: "ProductionOrganization.aspx/AuthorityControl",
+        data: "",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: false,//同步执行
+        success: function (msg) {
+            PageAuthority = msg.d;
+            //增加
+            if (PageAuthority[1] == '0') {
+                $("#id_add").linkbutton('disable');
+            }
+            //修改
+            //if (authArray[2] == '0') {
+            //    $("#edit").linkbutton('disable');
+            //}
+            //删除
+            //if (authArray[3] == '0') {
+            //    $("#delete").linkbutton('disable');
+            //}
+        }
+    });
+}
 
 function loadProdutionOrganizationData(myLoadType) {
     //parent.$.messager.progress({ text: '数据加载中....' });
@@ -135,6 +164,10 @@ function addProductionOrganizationFun() {
     $('#dlg_ProductionOrganization').dialog('open');
 }
 function EditProductionOrganizationFun(myOrganizationId) {
+    if (PageAuthority[2] == '0') {
+        $.messager.alert("提示", "该用户没有修改权限！");
+        return;
+    }
     $.ajax({
         type: "POST",
         url: 'ProductionOrganization.aspx/GetProductionOrganizationById',
@@ -166,6 +199,10 @@ function EditProductionOrganizationFun(myOrganizationId) {
     });
 }
 function RemoveProductionOrganizationFun(myOrganizationId, myLevelCode) {
+    if (PageAuthority[3] == '0') {
+        $.messager.alert("提示", "该用户没有删除权限！");
+        return;
+    }
     parent.$.messager.confirm('询问', '您确定要删除该组织机构节点?', function (r) {
         if (r) {
             $.ajax({
