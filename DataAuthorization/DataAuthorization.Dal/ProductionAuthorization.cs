@@ -23,7 +23,8 @@ namespace DataAuthorization.Dal
                     A.Name as Name, 
                     A.Type as Type, 
                     A.LegalRepresentative as LegalRepresentative, 
-                    A.Address as Address, 
+                    A.Address as Address,
+                    A.CoefficientAltitude as CoefficientAltitude,
                     A.Contacts as Contacts, 
                     A.ContactInfo as ContactInfo, 
                     A.CommissioningDate as CommissioningDate, 
@@ -61,6 +62,7 @@ namespace DataAuthorization.Dal
                     A.Type as Type, 
                     A.LegalRepresentative as LegalRepresentative, 
                     A.Address as Address, 
+                    A.CoefficientAltitude as CoefficientAltitude,
                     A.Contacts as Contacts, 
                     A.ContactInfo as ContactInfo, 
                     A.CommissioningDate as CommissioningDate, 
@@ -72,7 +74,7 @@ namespace DataAuthorization.Dal
             try
             {
                 m_Sql = string.Format(m_Sql, myOrganizationId);
-
+                
                 DataSet mDataSet_ProductionOrganizationInfo = m_DbDataAdapter.MySqlDbDataAdaper.Fill(null, m_Sql, "ProductionOrganizationTable");
                 return mDataSet_ProductionOrganizationInfo.Tables["ProductionOrganizationTable"];
             }
@@ -152,20 +154,21 @@ namespace DataAuthorization.Dal
         public int AddProductionOrganization(Model.ProductionOrganizationInfo myProductionOrganizationInfo)
         {
             string m_Sql = @" Insert into system_Organization 
-                ( OrganizationID, LevelCode, Name, Type, LegalRepresentative, Address, Contacts, ContactInfo, CommissioningDate, Products, Remarks) 
+                ( OrganizationID, LevelCode, Name, Type, LegalRepresentative, Address, CoefficientAltitude, Contacts, ContactInfo, CommissioningDate, Products, Remarks) 
                 values
-                ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}');";
+                ('{0}','{1}','{2}','{3}','{4}','{5}',{6},'{7}','{8}','{9}','{10}','{11}');";
             m_Sql = m_Sql.Replace("{0}", myProductionOrganizationInfo.OrganizationID);
             m_Sql = m_Sql.Replace("{1}", myProductionOrganizationInfo.LevelCode);
             m_Sql = m_Sql.Replace("{2}", myProductionOrganizationInfo.Name);
             m_Sql = m_Sql.Replace("{3}", myProductionOrganizationInfo.Type);
             m_Sql = m_Sql.Replace("{4}", myProductionOrganizationInfo.LegalRepresentative);
             m_Sql = m_Sql.Replace("{5}", myProductionOrganizationInfo.Address);
-            m_Sql = m_Sql.Replace("{6}", myProductionOrganizationInfo.Contacts);
-            m_Sql = m_Sql.Replace("{7}", myProductionOrganizationInfo.ContactInfo);
-            m_Sql = m_Sql.Replace("{8}", myProductionOrganizationInfo.CommissioningDate);
-            m_Sql = m_Sql.Replace("{9}", myProductionOrganizationInfo.Products);
-            m_Sql = m_Sql.Replace("{10}", myProductionOrganizationInfo.Remarks);
+            m_Sql = m_Sql.Replace("{6}", myProductionOrganizationInfo.CoefficientAltitude);
+            m_Sql = m_Sql.Replace("{7}", myProductionOrganizationInfo.Contacts);
+            m_Sql = m_Sql.Replace("{8}", myProductionOrganizationInfo.ContactInfo);
+            m_Sql = m_Sql.Replace("{9}", myProductionOrganizationInfo.CommissioningDate);
+            m_Sql = m_Sql.Replace("{10}", myProductionOrganizationInfo.Products);
+            m_Sql = m_Sql.Replace("{11}", myProductionOrganizationInfo.Remarks);
             try
             {
                 int m_ReturnValue = m_DbDataAdapter.MySqlDbDataAdaper.ExecuteNonQuery(m_Sql);
@@ -184,12 +187,13 @@ namespace DataAuthorization.Dal
                             Name = '{2}',
                             Type = '{3}',
                             LegalRepresentative = '{4}',
-                            Address = '{5}',
+                            Address = '{5}',                            
                             Contacts = '{6}', 
                             ContactInfo = '{7}', 
                             CommissioningDate = '{8}', 
                             Products = '{9}', 
-                            Remarks = '{10}'
+                            Remarks = '{10}',
+                            CoefficientAltitude = '{11}'
                             where OrganizationID = '{0}'";
             m_Sql = m_Sql.Replace("{0}", myProductionOrganizationInfo.OrganizationID);
             m_Sql = m_Sql.Replace("{1}", myProductionOrganizationInfo.LevelCode);
@@ -202,6 +206,7 @@ namespace DataAuthorization.Dal
             m_Sql = m_Sql.Replace("{8}", myProductionOrganizationInfo.CommissioningDate);
             m_Sql = m_Sql.Replace("{9}", myProductionOrganizationInfo.Products);
             m_Sql = m_Sql.Replace("{10}", myProductionOrganizationInfo.Remarks);
+            m_Sql = m_Sql.Replace("{11}", myProductionOrganizationInfo.CoefficientAltitude);
             try
             {
                 int ModifyRows = m_DbDataAdapter.MySqlDbDataAdaper.ExecuteNonQuery(m_Sql);
